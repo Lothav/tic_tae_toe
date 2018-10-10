@@ -49,10 +49,33 @@ public class EventHandler implements ActionListener
 
     private boolean checkPlayerWin()
     {
-        // Check horizontal Win.
-        if (cells[0].getType() == cells[1].getType() && cells[1].getType() == cells[2].getType() && cells[0].getType() != Cell.Type.NONE) {
-            return true;
+
+        if (cells[0].getType() != Cell.Type.NONE)
+        {
+            if (cells[0].getType() == cells[1].getType() && cells[1].getType() == cells[2].getType()) {
+                return true;
+            }
+
+            if (cells[0].getType() == cells[3].getType() && cells[3].getType() == cells[6].getType()) {
+                return true;
+            }
+
+            if (cells[0].getType() == cells[4].getType() && cells[4].getType() == cells[8].getType()) {
+                return true;
+            }
         }
+
+        if(cells[2].getType() != Cell.Type.NONE)
+        {
+            if (cells[2].getType() == cells[5].getType() && cells[5].getType() == cells[8].getType()) {
+                return true;
+            }
+
+            if (cells[2].getType() == cells[4].getType() && cells[4].getType() == cells[6].getType()) {
+                return true;
+            }
+        }
+
         if (cells[3].getType() == cells[4].getType() && cells[4].getType() == cells[5].getType() && cells[3].getType() != Cell.Type.NONE) {
             return true;
         }
@@ -61,24 +84,7 @@ public class EventHandler implements ActionListener
             return true;
         }
 
-        // Check vertical Win.
-        if (cells[0].getType() == cells[3].getType() && cells[3].getType() == cells[6].getType() && cells[0].getType() != Cell.Type.NONE) {
-            return true;
-        }
         if (cells[1].getType() == cells[4].getType() && cells[4].getType() == cells[7].getType() && cells[1].getType() != Cell.Type.NONE) {
-            return true;
-        }
-
-        if (cells[2].getType() == cells[5].getType() && cells[5].getType() == cells[8].getType() && cells[2].getType() != Cell.Type.NONE) {
-            return true;
-        }
-
-        // Check diagonal Win.
-        if (cells[0].getType() == cells[4].getType() && cells[4].getType() == cells[8].getType() && cells[0].getType() != Cell.Type.NONE) {
-            return true;
-        }
-
-        if (cells[2].getType() == cells[4].getType() && cells[4].getType() == cells[6].getType() && cells[2].getType() != Cell.Type.NONE) {
             return true;
         }
 
