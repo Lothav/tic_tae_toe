@@ -25,6 +25,23 @@ public class Window
         event_handler.setCells(cells);
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        event_handler.setWindow(this);
+    }
+
+    public int getWidth()
+    {
+        return width;
+    }
+
+    public int getHeight()
+    {
+        return height;
+    }
+
+    public void playerWins(EventHandler.Player player)
+    {
+        System.out.println("asdsaf");
     }
 
     public void setVisible(boolean b)
