@@ -12,9 +12,9 @@ public class Cell
 
     private Type type = Type.NONE;
 
-    public Cell()
+    public Type getType()
     {
-
+        return type;
     }
 
     public void setType(Type type)
@@ -33,7 +33,7 @@ public class Cell
                 break;
 
             case NOUGHT:
-                path = "assets/cross.png";
+                path = "assets/nought.png";
                 break;
 
             default:
@@ -45,5 +45,4 @@ public class Cell
 
         return new ImageIcon(scale_image);
     }
-
 }
