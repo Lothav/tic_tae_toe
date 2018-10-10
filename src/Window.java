@@ -8,9 +8,6 @@ public class Window
     public Window()
     {
         frame = new JFrame();
-        Container container = frame.getContentPane();
-        JLabel label = new JLabel ("Hello World");
-        container.add(label);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
