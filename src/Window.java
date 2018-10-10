@@ -8,6 +8,7 @@ public class Window
 
     private JFrame frame;
     private Cell[] cells;
+    private EventHandler event_handler;
 
     public Window(int width, int height)
     {
@@ -35,6 +36,7 @@ public class Window
         for (int i = 0; i < cells.length; i++) {
             cells[i] = new Cell();
             JButton button = new JButton(cells[i].getImage(width, height));
+            button.addActionListener(event_handler);
             container.add(button);
         }
     }
