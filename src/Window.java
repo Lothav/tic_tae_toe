@@ -15,10 +15,15 @@ public class Window
         this.width = width;
         this.height = height;
 
+        event_handler = new EventHandler();
+
         frame = new JFrame();
         frame.setLayout(new GridLayout(3, 3));
         frame.setSize(this.width, this.height);
         initButtons();
+
+        event_handler.setCells(cells);
+
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
@@ -35,8 +40,11 @@ public class Window
 
         for (int i = 0; i < cells.length; i++) {
             cells[i] = new Cell();
+
             JButton button = new JButton(cells[i].getImage(width, height));
+            button.setName(Integer.toString(i));
             button.addActionListener(event_handler);
+
             container.add(button);
         }
     }

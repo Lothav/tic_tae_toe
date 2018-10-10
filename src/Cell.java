@@ -17,6 +17,11 @@ public class Cell
 
     }
 
+    public void setType(Type type)
+    {
+        this.type = type;
+    }
+
     public ImageIcon getImage(int width, int height)
     {
         String path;
