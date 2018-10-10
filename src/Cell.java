@@ -17,7 +17,7 @@ public class Cell
 
     }
 
-    public ImageIcon getImage()
+    public ImageIcon getImage(int width, int height)
     {
         String path;
 
@@ -36,7 +36,7 @@ public class Cell
         }
 
         ImageIcon img = new ImageIcon(path);
-        Image scale_image = img.getImage().getScaledInstance(500/3, 500/3, Image.SCALE_SMOOTH);
+        Image scale_image = img.getImage().getScaledInstance(width/3, height/3, Image.SCALE_SMOOTH);
 
         return new ImageIcon(scale_image);
     }

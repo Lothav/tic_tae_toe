@@ -3,14 +3,20 @@ import java.awt.*;
 
 public class Window
 {
+    private int width;
+    private int height;
+
     private JFrame frame;
     private Cell[] cells;
 
-    public Window()
+    public Window(int width, int height)
     {
+        this.width = width;
+        this.height = height;
+
         frame = new JFrame();
         frame.setLayout(new GridLayout(3, 3));
-        frame.setSize(500, 500);
+        frame.setSize(this.width, this.height);
         initButtons();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
@@ -28,7 +34,7 @@ public class Window
 
         for (int i = 0; i < cells.length; i++) {
             cells[i] = new Cell();
-            JButton button = new JButton(cells[i].getImage());
+            JButton button = new JButton(cells[i].getImage(width, height));
             container.add(button);
         }
     }
