@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 
 public class Cell
 {
@@ -34,7 +35,10 @@ public class Cell
                 path = "assets/empty.png";
         }
 
-        return new ImageIcon (path);
+        ImageIcon img = new ImageIcon(path);
+        Image scale_image = img.getImage().getScaledInstance(500/3, 500/3, Image.SCALE_SMOOTH);
+
+        return new ImageIcon(scale_image);
     }
 
 }

@@ -27,7 +27,8 @@ public class Window
         cells = new Cell[9];
 
         for (int i = 0; i < cells.length; i++) {
-            JButton button = new JButton("Test");
+            cells[i] = new Cell();
+            JButton button = new JButton(cells[i].getImage());
             container.add(button);
         }
     }
