@@ -1,11 +1,13 @@
 import javax.swing.*;
+import java.util.Random;
 
 public class Game implements EventHandler
 {
     private GridWindow grid;
+    private MessageWindow message;
     private Cell[] cells;
 
-    static int CELLS_SIZE = 9;
+    private static int CELLS_SIZE = 9;
 
     Game()
     {
@@ -13,6 +15,7 @@ public class Game implements EventHandler
         for (int i =0; i < CELLS_SIZE; i++) {
             cells[i] = new Cell();
         }
+        message = new MessageWindow();
         grid  = new GridWindow(500, 500, 3, cells);
         grid.setEventHandler(this);
     }
@@ -84,19 +87,25 @@ public class Game implements EventHandler
     {
         playerTurn(cell_id);
         if (check()){
-            System.out.println("Player Win");
+            message.setMessage("Player Win");
+            message.setVisible(true);
+            return;
         }
 
         computerTurn();
         if (check()){
-            System.out.println("Computer Win");
+            message.setMessage("Computer Win");
+            message.setVisible(true);
         }
     }
 
     private void computerTurn()
     {
-        for (int i = 0; i < cells.length; i++) {
-            if(cells[i].getType() != Cell.Type.NONE){
+        Random rand = new Random();
+
+        while (true) {
+            int i = rand.nextInt(9);
+            if(cells[i].getType() == Cell.Type.NONE) {
                 cells[i].setType(Cell.Type.NOUGHT);
                 Icon icon = cells[i].getImage(grid.getWidth(), grid.getHeight());
                 grid.setCellIcon(i, icon);
