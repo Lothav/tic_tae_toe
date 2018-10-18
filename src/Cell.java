@@ -1,7 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 
-public class Cell
+class Cell
 {
     public enum Type
     {
@@ -12,17 +12,17 @@ public class Cell
 
     private Type type = Type.NONE;
 
-    public Type getType()
+    Type getType()
     {
         return type;
     }
 
-    public void setType(Type type)
+    void setType(Type type)
     {
         this.type = type;
     }
 
-    public ImageIcon getImage(int width, int height)
+    ImageIcon getImage(int width, int height)
     {
         String path;
 
