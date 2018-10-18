@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.util.ArrayList;
 import java.util.Random;
 
 public class Game implements EventHandler
@@ -6,6 +7,8 @@ public class Game implements EventHandler
     private GridWindow grid;
     private MessageWindow message;
     private Cell[] cells;
+
+    private boolean paused = true;
 
     private static int CELLS_SIZE = 9;
 
@@ -30,7 +33,66 @@ public class Game implements EventHandler
 
     void begin()
     {
+        paused = false;
         grid.setVisible(true);
+    }
+
+    @Override
+    public void handleClickCell(int cell_id)
+    {
+        if(paused) {
+            message.setVisible(true);
+            return;
+        }
+
+        playerTurn(cell_id);
+        if (check()){
+            message.setMessage("Player Win");
+            message.setVisible(true);
+            paused = true;
+            return;
+        }
+
+        computerTurn();
+        if (check()){
+            message.setMessage("Computer Win");
+            message.setVisible(true);
+            paused = true;
+        }
+    }
+
+    private void computerTurn()
+    {
+        ArrayList<Integer> empty_cells = new ArrayList<>();
+
+        for (int i = 0; i < cells.length; i++) {
+            if(cells[i].getType() == Cell.Type.NONE){
+                empty_cells.add(i);
+            }
+        }
+
+        Random rand = new Random();
+        int n = rand.nextInt(empty_cells.size()-1);
+        if(n < 0) return;
+
+        int i = empty_cells.get(n);
+
+        cells[i].setType(Cell.Type.NOUGHT);
+        Icon icon = cells[i].getImage(grid.getWidth(), grid.getHeight());
+        grid.setCellIcon(i, icon);
+    }
+
+    private void playerTurn(int player_choose)
+    {
+        Cell cell = cells[player_choose];
+        if(cell.getType() != Cell.Type.NONE) {
+            return;
+        }
+
+        cell.setType(Cell.Type.CROSS);
+
+        Icon icon = cell.getImage(grid.getWidth(), grid.getHeight());
+        grid.setCellIcon(player_choose, icon);
     }
 
     private boolean check()
@@ -81,50 +143,4 @@ public class Game implements EventHandler
 
         return false;
     }
-
-    @Override
-    public void handleClickCell(int cell_id)
-    {
-        playerTurn(cell_id);
-        if (check()){
-            message.setMessage("Player Win");
-            message.setVisible(true);
-            return;
-        }
-
-        computerTurn();
-        if (check()){
-            message.setMessage("Computer Win");
-            message.setVisible(true);
-        }
-    }
-
-    private void computerTurn()
-    {
-        Random rand = new Random();
-
-        while (true) {
-            int i = rand.nextInt(9);
-            if(cells[i].getType() == Cell.Type.NONE) {
-                cells[i].setType(Cell.Type.NOUGHT);
-                Icon icon = cells[i].getImage(grid.getWidth(), grid.getHeight());
-                grid.setCellIcon(i, icon);
-                return;
-            }
-        }
-    }
-
-    private void playerTurn(int player_choose)
-    {
-        Cell cell = cells[player_choose];
-        if(cell.getType() != Cell.Type.NONE) {
-            return;
-        }
-
-        cell.setType(Cell.Type.CROSS);
-
-        Icon icon = cell.getImage(grid.getWidth(), grid.getHeight());
-        grid.setCellIcon(player_choose, icon);
-    }
-
 }
