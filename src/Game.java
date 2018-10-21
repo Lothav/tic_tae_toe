@@ -28,8 +28,12 @@ public class Game implements EventHandler
 
     void restart()
     {
+        message.setVisible(false);
+        paused = false;
         for (int i =0; i < CELLS_SIZE; i++) {
             cells[i].setType(Cell.Type.NONE);
+            Icon icon = cells[i].getImage(grid.getWidth(), grid.getHeight());
+            grid.setCellIcon(i, icon);
         }
         begin();
     }
@@ -63,6 +67,19 @@ public class Game implements EventHandler
             message.setMessage("Computer Win");
             message.setVisible(true);
             paused = true;
+        }
+    }
+
+    @Override
+    public void handleClickButton(ButtonEventType type)
+    {
+        if(type == ButtonEventType.RESTART){
+            this.restart();
+        } else if(type == ButtonEventType.CLOSE){
+            message.setVisible(false);
+            message.close();
+            grid.setVisible(false);
+            grid.close();
         }
     }
 

@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.event.WindowEvent;
 
 class Window
 {
@@ -31,5 +32,10 @@ class Window
     void setVisible(boolean b)
     {
         frame.setVisible(b);
+    }
+
+    void close()
+    {
+        frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
     }
 }
