@@ -3,14 +3,12 @@ import java.awt.*;
 
 class GridWindow extends Window
 {
-    private ClickHandler click_handler;
     private JButton[] buttons;
 
     GridWindow(int width, int height, int grid_size, Cell[] cells)
     {
         super(width, height);
 
-        click_handler = new ClickHandler();
         buttons = new JButton[cells.length];
         frame.setLayout(new GridLayout(grid_size, grid_size));
 

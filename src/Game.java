@@ -2,7 +2,7 @@ import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Game implements EventHandler
+    public class Game implements EventHandler
 {
     private GridWindow grid;
     private MessageWindow message;
@@ -15,7 +15,7 @@ public class Game implements EventHandler
     Game()
     {
         cells = new Cell[CELLS_SIZE];
-        for (int i =0; i < CELLS_SIZE; i++) {
+        for (int i = 0; i < CELLS_SIZE; i++) {
             cells[i] = new Cell();
         }
 
@@ -55,7 +55,7 @@ public class Game implements EventHandler
         if(!playerTurn(cell_id)){
             return;
         }
-        if (check()){
+        if (checkFinish()){
             message.setMessage("Player Win");
             message.setVisible(true);
             paused = true;
@@ -63,7 +63,7 @@ public class Game implements EventHandler
         }
 
         computerTurn();
-        if (check()){
+        if (checkFinish()){
             message.setMessage("Computer Win");
             message.setVisible(true);
             paused = true;
@@ -119,7 +119,7 @@ public class Game implements EventHandler
         return true;
     }
 
-    private boolean check()
+    private boolean checkFinish()
     {
         Cell.Type[] cells_types = new Cell.Type[CELLS_SIZE];
 

@@ -5,6 +5,8 @@ class Window
 {
     private int width;
     private int height;
+    protected ClickHandler click_handler;
+    protected EventHandler callback;
 
     JFrame frame;
 
@@ -17,6 +19,8 @@ class Window
         frame.setSize(this.width, this.height);
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        click_handler = new ClickHandler();
     }
 
     int getWidth()
@@ -37,5 +41,10 @@ class Window
     void close()
     {
         frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
+    }
+
+    void setEventHandler(EventHandler eventHandler)
+    {
+        callback = eventHandler;
     }
 }

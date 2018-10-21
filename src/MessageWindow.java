@@ -4,7 +4,6 @@ import java.awt.*;
 class MessageWindow extends Window
 {
     private JLabel label;
-    private ClickHandler click_handler;
     private JButton[] buttons;
 
     static String[] BUTTONS_LABELS = {"Restart", "Close Game"};
@@ -13,7 +12,6 @@ class MessageWindow extends Window
     {
         super(300, 100);
 
-        click_handler = new ClickHandler();
         label = new JLabel("", SwingConstants.CENTER);
 
         Container container = frame.getContentPane();
