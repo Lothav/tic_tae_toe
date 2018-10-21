@@ -18,8 +18,11 @@ public class Game implements EventHandler
         for (int i =0; i < CELLS_SIZE; i++) {
             cells[i] = new Cell();
         }
+
         message = new MessageWindow();
-        grid  = new GridWindow(500, 500, 3, cells);
+        message.setEventHandler(this);
+
+        grid = new GridWindow(500, 500, 3, cells);
         grid.setEventHandler(this);
     }
 
@@ -45,7 +48,9 @@ public class Game implements EventHandler
             return;
         }
 
-        playerTurn(cell_id);
+        if(!playerTurn(cell_id)){
+            return;
+        }
         if (check()){
             message.setMessage("Player Win");
             message.setVisible(true);
@@ -82,17 +87,19 @@ public class Game implements EventHandler
         grid.setCellIcon(i, icon);
     }
 
-    private void playerTurn(int player_choose)
+    private boolean playerTurn(int player_choose)
     {
         Cell cell = cells[player_choose];
         if(cell.getType() != Cell.Type.NONE) {
-            return;
+            return false;
         }
 
         cell.setType(Cell.Type.CROSS);
 
         Icon icon = cell.getImage(grid.getWidth(), grid.getHeight());
         grid.setCellIcon(player_choose, icon);
+
+        return true;
     }
 
     private boolean check()
