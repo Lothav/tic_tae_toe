@@ -23,11 +23,6 @@ class GridWindow extends Window
         }
     }
 
-    void setEventHandler(EventHandler event_handler)
-    {
-        click_handler.setEventHandler(event_handler);
-    }
-
     void setCellIcon(int cell_id, Icon icon)
     {
         buttons[cell_id].setIcon(icon);

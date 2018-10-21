@@ -47,16 +47,22 @@ import java.util.Random;
     @Override
     public void handleClickCell(int cell_id)
     {
-        if(paused) {
+        if (paused) {
             message.setVisible(true);
             return;
         }
 
-        if(!playerTurn(cell_id)){
+        if (!playerTurn(cell_id)){
             return;
         }
         if (checkFinish()){
             message.setMessage("Player Win");
+            message.setVisible(true);
+            paused = true;
+            return;
+        }
+        if (checkFull()){
+            message.setMessage("Draw");
             message.setVisible(true);
             paused = true;
             return;
@@ -67,7 +73,24 @@ import java.util.Random;
             message.setMessage("Computer Win");
             message.setVisible(true);
             paused = true;
+            return;
         }
+        if (checkFull()){
+            message.setMessage("Draw");
+            message.setVisible(true);
+            paused = true;
+        }
+    }
+
+    private boolean checkFull()
+    {
+        for (int i = 0; i < cells.length; i++) {
+            if(cells[i].getType() == Cell.Type.NONE){
+                return false;
+            }
+        }
+
+        return true;
     }
 
     @Override

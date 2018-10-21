@@ -40,11 +40,6 @@ class MessageWindow extends Window
         return ButtonEventType.CLOSE;
     }
 
-    void setEventHandler(EventHandler event_handler)
-    {
-        click_handler.setEventHandler(event_handler);
-    }
-
     void setMessage(String message)
     {
         label.setText(message);

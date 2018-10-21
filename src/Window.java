@@ -43,8 +43,8 @@ class Window
         frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
     }
 
-    void setEventHandler(EventHandler eventHandler)
+    void setEventHandler(EventHandler event_handler)
     {
-        callback = eventHandler;
+        click_handler.setEventHandler(event_handler);
     }
 }
