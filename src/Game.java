@@ -2,7 +2,7 @@ import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Random;
 
-    public class Game implements EventHandler
+public class Game implements EventHandler
 {
     private GridWindow grid;
     private MessageWindow message;

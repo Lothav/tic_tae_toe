@@ -6,7 +6,6 @@ class Window
     private int width;
     private int height;
     protected ClickHandler click_handler;
-    protected EventHandler callback;
 
     JFrame frame;
 
